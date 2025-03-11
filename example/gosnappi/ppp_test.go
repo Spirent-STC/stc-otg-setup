@@ -8,9 +8,9 @@ import (
 	"github.com/open-traffic-generator/snappi/gosnappi"
 )
 
-// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestIgmpv1
+// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestPpp
 
-func TestIgmpv1(t *testing.T) {
+func TestPpp(t *testing.T) {
 	// Create a new API handle to make API calls against OTG
 	api := gosnappi.NewApi()
 
@@ -55,35 +55,42 @@ func TestIgmpv1(t *testing.T) {
 	pkt := flow.Packet()
 	eth := pkt.Add().Ethernet()
 	ipv4 := pkt.Add().Ipv4()
+	ppp := pkt.Add().Ppp()
 	//tcp := pkt.Add().Tcp()
 	// udp := pkt.Add().Udp()
-	igmpv1 := pkt.Add().Igmpv1()
+	cus := pkt.Add().Custom()
 
 	eth.Dst().SetValue("00:11:22:33:44:55")
+	//eth.Dst().Auto()
+	//eth.Dst().SetValues([]string{"00:11:22:33:44:55", "00:11:22:33:44:56", "00:11:22:33:44:57"})
+	//eth.Dst().Increment().SetStart("00:11:22:33:44:55").SetStep("00:00:00:00:00:01").SetCount(3)
+	//eth.Dst().Decrement().SetStart("00:11:22:33:44:55").SetStep("00:00:00:00:00:01").SetCount(3)
 	eth.Src().SetValue("00:11:22:33:44:66")
+	//eth.Src().SetValues([]string{"00:11:22:33:44:66", "00:11:22:33:44:67", "00:11:22:33:44:68"})
+	//eth.Src().Increment().SetStart("00:11:22:33:44:66").SetStep("00:00:00:00:00:01").SetCount(3)
+	//eth.Src().Decrement().SetStart("00:11:22:33:44:66").SetStep("00:00:00:00:00:01").SetCount(3)
 	eth.EtherType().SetValue(8914)
+	//eth.EtherType().SetValues([]uint32{806, 804, 660, 661, 803})
+	//eth.EtherType().Auto()
+	//eth.EtherType().Increment().SetStart(600).SetStep(1).SetCount(20)
+	//eth.EtherType().Decrement().SetStart(600).SetStep(1).SetCount(20)
+	//eth.PfcQueue().SetValue(0)
+	cus.SetBytes("123456")
 
 	ipv4.Src().SetValue("10.1.1.1")
 	ipv4.Dst().SetValue("20.1.1.1")
 
-	igmpv1.GroupAddress().SetValue("0.0.0.0")
-	// igmpv1.GroupAddress().SetValues([]string{"0.0.0.0"})
-	// igmpv1.GroupAddress().Increment().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.GroupAddress().Decrement().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.Type().SetValue(1)
-	// igmpv1.Type().SetValues([]uint32{1})
-	// igmpv1.Type().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Type().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	igmpv1.Unused().SetValue(0)
-	// igmpv1.Unused().SetValues([]uint32{1})
-	// igmpv1.Unused().Increment().SetStart(0).SetStep(1).SetCount(1)
-	// igmpv1.Unused().Decrement().SetStart(0).SetStep(1).SetCount(1)
-	igmpv1.Version().SetValue(1)
-	// igmpv1.Version().SetValues([]uint32{1})
-	// igmpv1.Version().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Version().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	//igmpv1.Checksum().SetGenerated("bad")
-	igmpv1.Checksum().SetCustom(100)
+	ppp.ProtocolType().SetValue(33)
+	// ppp.ProtocolType().SetValues([]uint32{33})
+	// ppp.ProtocolType().Increment().SetStart(33).SetStep(1).SetCount(1)
+	// ppp.ProtocolType().Decrement().SetStart(33).SetStep(1).SetCount(1)
+	// ppp.Control().SetValue(3)
+	ppp.Control().SetValues([]uint32{3})
+	// ppp.Control().Increment().SetStart(3).SetStep(1).SetCount(1)
+	// ppp.Control().Decrement().SetStart(3).SetStep(1).SetCount(1)
+	// ppp.Address().SetValue(255)
+	// ppp.Address().SetValues([]uint32{255})
+	// ppp.Address().Increment().SetStart(255).SetStep(1).SetCount(1)
 
 	fmt.Println("Test Gosnappi begin :")
 	// // Configure repeating patterns for source and destination UDP ports
