@@ -1,0 +1,42 @@
+# proto-file: github.com/openconfig/featureprofiles/blob/main/topologies/proto/binding.proto
+# proto-message: openconfig.testing.Binding
+
+# This is an example static binding that demonstrates how to specify
+# options to be used in conjunction with the atedut_*.testbed
+# testbeds.
+
+# These options are inherited throughout the entire binding for both the
+# DUT and the ATE, unless overridden by a specific device or protocol.
+options {
+  username: "admin"
+  password: "spirent123"
+}
+
+ates {
+  id: "ate"
+  name: "labserver"  # Change this to the labserver hostname.
+
+  # This option specific to OTG. 
+  otg {
+    target: "10.61.37.199:50051" # Change this to the otg server endpoint.
+    insecure: true
+    timeout: 600
+  }
+
+  gnmi {
+     target: "10.61.37.199:50052"  # Change this to the gnmi server endpoint.
+     insecure: true
+     timeout: 600
+  }
+
+  # Before this binding can be used with a topology, add ports mapping
+  # from its topology ID to the actual port name on the device.
+  ports {
+    id: "port1"
+    name: "//10.61.37.186/1/1"  # Change this to the port location.
+  }
+  ports {
+    id: "port2"
+    name: "//10.61.37.186/1/2"  # Change this to the port location.
+  }
+}
