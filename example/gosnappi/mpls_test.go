@@ -8,9 +8,9 @@ import (
 	"github.com/open-traffic-generator/snappi/gosnappi"
 )
 
-// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestIgmpv1
+// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestMpls
 
-func TestIgmpv1(t *testing.T) {
+func TestMpls(t *testing.T) {
 	// Create a new API handle to make API calls against OTG
 	api := gosnappi.NewApi()
 
@@ -55,9 +55,7 @@ func TestIgmpv1(t *testing.T) {
 	pkt := flow.Packet()
 	eth := pkt.Add().Ethernet()
 	ipv4 := pkt.Add().Ipv4()
-	//tcp := pkt.Add().Tcp()
-	// udp := pkt.Add().Udp()
-	igmpv1 := pkt.Add().Igmpv1()
+	mpls := pkt.Add().Mpls()
 
 	eth.Dst().SetValue("00:11:22:33:44:55")
 	eth.Src().SetValue("00:11:22:33:44:66")
@@ -66,33 +64,19 @@ func TestIgmpv1(t *testing.T) {
 	ipv4.Src().SetValue("10.1.1.1")
 	ipv4.Dst().SetValue("20.1.1.1")
 
-	igmpv1.GroupAddress().SetValue("0.0.0.0")
-	// igmpv1.GroupAddress().SetValues([]string{"0.0.0.0"})
-	// igmpv1.GroupAddress().Increment().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.GroupAddress().Decrement().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.Type().SetValue(1)
-	// igmpv1.Type().SetValues([]uint32{1})
-	// igmpv1.Type().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Type().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	igmpv1.Unused().SetValue(0)
-	// igmpv1.Unused().SetValues([]uint32{1})
-	// igmpv1.Unused().Increment().SetStart(0).SetStep(1).SetCount(1)
-	// igmpv1.Unused().Decrement().SetStart(0).SetStep(1).SetCount(1)
-	igmpv1.Version().SetValue(1)
-	// igmpv1.Version().SetValues([]uint32{1})
-	// igmpv1.Version().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Version().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	//igmpv1.Checksum().SetGenerated("bad")
-	igmpv1.Checksum().SetCustom(100)
+	mpls.Label().SetValue(16)
+	// mpls.Label().SetValues([]uint32{16})
+	// mpls.Label().Increment().SetStart(16).SetStep(1).SetCount(1)
+	// mpls.Label().Decrement().SetStart(16).SetStep(1).SetCount(1)
+	mpls.TrafficClass().SetValue(0)
+	mpls.BottomOfStack().SetValue(1)
+	mpls.TimeToLive().SetValue(64)
+	// mpls.TimeToLive().SetValues([]uint32{64})
+	// mpls.TimeToLive().Increment().SetStart(64).SetStep(1).SetCount(1)
+	//mpls.TimeToLive().Decrement().SetStart(64).SetStep(1).SetCount(1)
 
 	fmt.Println("Test Gosnappi begin :")
 	// // Configure repeating patterns for source and destination UDP ports
-	// udp.SrcPort().SetValues([]uint32{5010, 5015, 5020, 5025, 5030})
-	// udp.DstPort().Increment().SetStart(6010).SetStep(5).SetCount(5)
-	//tcp.SrcPort().SetValue(1000)
-	//tcp.DstPort().SetValue(1000)
-	// // Configure custom bytes (hex string) in payload
-	// cus.SetBytes(hex.EncodeToString([]byte("..QUICKSTART SNAPPI..")))
 
 	// Optionally, print JSON representation of config
 	if j, err := config.Marshal().ToJson(); err != nil {

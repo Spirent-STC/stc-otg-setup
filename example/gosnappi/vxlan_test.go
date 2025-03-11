@@ -8,9 +8,9 @@ import (
 	"github.com/open-traffic-generator/snappi/gosnappi"
 )
 
-// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestIgmpv1
+// PORT1=10.109.121.181/1/1 PORT2=10.109.123.254/1/1 OTGSERVER=localhost:50051 go test -v -test.run TestVxlan
 
-func TestIgmpv1(t *testing.T) {
+func TestVxlan(t *testing.T) {
 	// Create a new API handle to make API calls against OTG
 	api := gosnappi.NewApi()
 
@@ -56,34 +56,48 @@ func TestIgmpv1(t *testing.T) {
 	eth := pkt.Add().Ethernet()
 	ipv4 := pkt.Add().Ipv4()
 	//tcp := pkt.Add().Tcp()
-	// udp := pkt.Add().Udp()
-	igmpv1 := pkt.Add().Igmpv1()
+	udp := pkt.Add().Udp()
+	// cus := pkt.Add().Custom()
+	vxlan := pkt.Add().Vxlan()
 
 	eth.Dst().SetValue("00:11:22:33:44:55")
 	eth.Src().SetValue("00:11:22:33:44:66")
-	eth.EtherType().SetValue(8914)
 
 	ipv4.Src().SetValue("10.1.1.1")
 	ipv4.Dst().SetValue("20.1.1.1")
 
-	igmpv1.GroupAddress().SetValue("0.0.0.0")
-	// igmpv1.GroupAddress().SetValues([]string{"0.0.0.0"})
-	// igmpv1.GroupAddress().Increment().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.GroupAddress().Decrement().SetStart("0.0.0.0").SetStep("0.0.0.1").SetCount(1)
-	// igmpv1.Type().SetValue(1)
-	// igmpv1.Type().SetValues([]uint32{1})
-	// igmpv1.Type().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Type().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	igmpv1.Unused().SetValue(0)
-	// igmpv1.Unused().SetValues([]uint32{1})
-	// igmpv1.Unused().Increment().SetStart(0).SetStep(1).SetCount(1)
-	// igmpv1.Unused().Decrement().SetStart(0).SetStep(1).SetCount(1)
-	igmpv1.Version().SetValue(1)
-	// igmpv1.Version().SetValues([]uint32{1})
-	// igmpv1.Version().Increment().SetStart(1).SetStep(1).SetCount(1)
-	// igmpv1.Version().Decrement().SetStart(1).SetStep(1).SetCount(1)
-	//igmpv1.Checksum().SetGenerated("bad")
-	igmpv1.Checksum().SetCustom(100)
+	//udp.SrcPort().SetValue(1200)
+	//udp.SrcPort().SetValues([]uint32{100, 1000, 10000, 65535})
+	//udp.SrcPort().Increment().SetStart(1).SetStep(64).SetCount(100)
+	udp.SrcPort().Decrement().SetStart(65535).SetStep(128).SetCount(10)
+	//udp.DstPort().SetValue(65535)
+	//udp.DstPort().SetValues([]uint32{100, 1000, 10000, 65535})
+	//udp.DstPort().Increment().SetStart(1).SetStep(64).SetCount(100)
+	udp.DstPort().Decrement().SetStart(65535).SetStep(128).SetCount(10)
+	//udp.Length().SetValue(65534)
+	//udp.Length().SetValues([]uint32{2, 10, 100, 1000, 10000, 65534, 65535})
+	//udp.Length().Increment().SetStart(1).SetStep(1).SetCount(1000)
+	//udp.Length().Decrement().SetStart(65535).SetStep(1).SetCount(1000)
+	//udp.Checksum().SetGenerated("bad")
+	//udp.Checksum().SetCustom(65534)
+
+	// vxlan.Flags().SetValue(28)
+	// vxlan.Flags().SetValues([]uint32{28, 29})
+	// vxlan.Flags().Increment().SetStart(28).SetStep(1).SetCount(1)
+	// vxlan.Flags().Decrement().SetStart(28).SetStep(1).SetCount(1)
+	// vxlan.Flags().MetricTags().SetName("flag").SetOffset(1).SetLength(1)
+	// vxlan.Vni().SetValue(1)
+	// vxlan.Vni().SetValues([]uint32{1, 2})
+	// vxlan.Vni().Increment().SetStart(1).SetStep(1).SetCount(1)
+	vxlan.Vni().Decrement().SetStart(2).SetStep(1).SetCount(1)
+	// vxlan.Reserved1().SetValue(25)
+	// vxlan.Reserved1().SetValues([]uint32{25, 28})
+	// vxlan.Reserved1().Increment().SetStart(25).SetStep(1).SetCount(1)
+	vxlan.Reserved1().Decrement().SetStart(25).SetStep(1).SetCount(1)
+	// vxlan.Reserved0().SetValue(25)
+	// vxlan.Reserved0().SetValues([]uint32{25,28})
+	// vxlan.Reserved0().Increment().SetStart(25).SetStep(1).SetCount(1)
+	vxlan.Reserved0().Decrement().SetStart(25).SetStep(1).SetCount(1)
 
 	fmt.Println("Test Gosnappi begin :")
 	// // Configure repeating patterns for source and destination UDP ports
