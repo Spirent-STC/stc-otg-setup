@@ -168,5 +168,6 @@ docker-compose -f otg-compose.yaml down
 
 ## Supported OTG APIs and GNMI Path List
 
-Refer to each release note for the latest supported OTG APIs and GNMI path list.
+- Refer to `SupportedOTGInstanceList.txt` and `SupportedOTGInstanceList.txt`  for the latest supported OTG APIs and GNMI path list.
+- Please refer to the release notes for the list of known issues and limitations.
 
