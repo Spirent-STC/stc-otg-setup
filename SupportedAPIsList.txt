@@ -1,3 +1,4 @@
+## Supported OTG Parameter List:
 Method	Type	Key
 Set/Get Config	Request	ports.{i}.location
 Set/Get Config	Request	lags.{i}.ports.{i}.port_name
@@ -935,3 +936,20 @@ Control_action	Request	protocol.ipv4.choice
 Control_action	Request	protocol.ipv4.ping.requests.{i}.dst_ip
 Control_action	Request	protocol.ipv6.choice
 Control_action	Request	protocol.ipv6.ping.requests.{i}.dst_ip
+
+## Supported GNMI Path List:
+/ports/port
+/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/graceful-restart
+/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor
+/lags/lag
+/lacp/lag-members/lag-member
+/lacp
+/interfaces/interface/ipv6-neighbors/ipv6-neighbor
+/interfaces/interface/ipv4-neighbors/ipv4-neighbor
+/flows/flow/tagged-metrics/tagged-metric
+/flows/flow
+/bgp-peers/bgp-peer/unicast-ipv6-prefixes/unicast-ipv6-prefix
+/bgp-peers/bgp-peer/unicast-ipv4-prefixes/unicast-ipv4-prefix
+/bgp-peers/bgp-peer
+/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/graceful-restart
+/bgp-peers/bgp-peer/name
