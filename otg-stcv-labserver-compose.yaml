@@ -1,16 +1,27 @@
 version: '3'
 
 services:
+  stcv:
+    image: stc:latest
+    deploy:
+      replicas: 1
+    networks:
+      - admin-bridge
+      - test1-bridge
+    environment:
+       rx-buffer-size: 12
   labserver:
     container_name: labserver
-    image: registry.oriontest.net/labserver
-    ports: ["80:80","4006:40006"]
+    image: labserver:latest
+    network_mode: host
+    restart: always
     logging:
       options:
         max-size: "10m"
         max-file: "5"
     shm_size: '250m'
-    tty: true
+    deploy:
+      replicas: 1
     environment:
       SPIRENTD_LICENSE_FILE: ${LICENSE_SERVER}
     volumes:
@@ -29,5 +40,9 @@ services:
     tty: true
     volumes:
       - /home/spirent/demo/testdata/:/share
-
     command: "tail -f /dev/null"
+networks:
+  admin-bridge:
+    driver: bridge
+  test1-bridge:
+    driver: bridge
