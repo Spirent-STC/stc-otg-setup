@@ -102,6 +102,65 @@ Set/Get Config	Request	devices.{i}.bgp.ipv6_interfaces.{i}.peers.{i}.capability.
 Set/Get Config	Request	devices.{i}.bgp.ipv6_interfaces.{i}.peers.{i}.capability.route_refresh
 Set/Get Config	Request	devices.{i}.bgp.ipv6_interfaces.{i}.peers.{i}.capability.extended_next_hop_encoding
 Set/Get Config	Request	devices.{i}.bgp.ipv6_interfaces.{i}.peers.{i}.name
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.name
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.routerid.choice
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.routerid.custom
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.lsa_retransmit_time
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.lsa_refresh_time
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.inter_burst_lsu_interval
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.graceful_restart.helper_mode
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.store_lsa
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.t_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.e_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.mc_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.np_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.ea_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.dc_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.o_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.unused_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.lsa_b_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.capabilities.lsa_e_bit
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.name
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.area.choice
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.area.ip
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.network_type.choice
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.administrative_group
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.metric_level
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.max_bandwidth
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.max_reservable_bandwidth
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb0
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb1
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb2
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb3
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb4
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb5
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb6
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.traffic_engineering.priority_bandwidths.pb7
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.authentication.choice
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.authentication.md5s.key_id
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.authentication.md5s.key
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.authentication.clear_text
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.advanced.hello_interval
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.advanced.dead_interval
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.advanced.routing_metric
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.interface.advanced.priority
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.name
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.addresses.address
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.addresses.prefix
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.addresses.count
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.addresses.step
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.metric
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.choice
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.intra_area.flags.a_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.intra_area.flags.n_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.inter_area.flags.a_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.inter_area.flags.n_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.external_type_1.flags.a_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.external_type_1.flags.n_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.external_type_2.flags.a_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.external_type_2.flags.n_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.nssa_external.flags.a_flag
+Set/Get Config	Request	devices.ospfv2		devices{i}.ospfv2.v4_routes.route_origin.nssa_external.flags.n_flag
 Set/Get Config	Request	flows.{i}.tx_rx.choice
 Set/Get Config	Request	flows.{i}.tx_rx.port.tx_name
 Set/Get Config	Request	flows.{i}.tx_rx.port.rx_name
