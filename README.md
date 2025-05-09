@@ -158,16 +158,28 @@ To stop and remove the containers, run:
 docker-compose -f otg-compose.yaml down
 ```
 
-## End-user OTG Test Case Script Execution Examples
+## End-User OTG Test Case Coverage and Execution
 
-- Both `./example/gosnappi` and `./example/snappi` applied cases demonstrate basic emulated devices and traffic flows with IPv4 capabilities in back-to-back scenarios.
+### Supported Protocols and Test Types
 
-- `./example/ondatra` includes typical IS-IS and BGP test cases, designed to run within the Ondatra framework using the specified `featureprofile` branch.
+| Protocol   | Test Type         | Notes                          |
+|------------|-------------------|--------------------------------|
+| IPv4       | Basic B2B         | `gosnappi`, `snappi` examples   |
+| IS-IS      | Control Plane     | Available via `ondatra`         |
+| BGP        | Control Plane     | Available via `ondatra`         |
+| OSPFv2     | Conformance Suite | Modify test config for gRPC     |
 
-- For detailed instructions on running these examples, refer to the `README` guide in each example case folder.
+### Execution Examples
+
+- The `./example/gosnappi` and `./example/snappi` directories contain basic test cases showcasing emulated devices and IPv4 traffic flows in back-to-back scenarios.  
+  For detailed execution steps, refer to the corresponding `README.md` files in each directory.
+
+- The `./example/ondatra` directory includes standard IS-IS and BGP test cases, intended to run within the Ondatra framework using the appropriate `featureprofile` branch.  
+  Please consult the `README.md` in this directory for step-by-step instructions.
+
+- Additionally, STC OTG Service supports the execution of OTG community conformance test cases. At present, only OSPFv2 is fully supported.
+For an example test case, refer to the OSPFv2 conformance test case in the OTG Conformance repository.  
+**Note:** When using STC OTG Service, ensure that gRPC transport is enabled (otg_grpc_transport = True) and that the OTG host and port configurations are set correctly.
 
 ## Supported OTG APIs and GNMI Path List
 Refer to `SupportedAPIsList.txt` for the latest supported OTG APIs and GNMI paths.
-
-
-
