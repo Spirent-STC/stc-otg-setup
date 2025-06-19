@@ -145,10 +145,18 @@ To run multiple instances of the OTG service, use the following command:
 docker-compose -f otg-multi-compose.yaml up --scale otg=2 -d
 ```
 
-- The `--scale otg=` option allows you to create multiple OTG/gNMI service instances.
+- The `--scale` option allows you to create multiple OTG/gNMI service instances.
 - **Default Dynamic Port Ranges:**
   - **OTG Service:** 48153–48200
   - **gNMI Service:** 49153–49200
+  
+Use the following command to create multiple instances of the OTG service, including STCv ports and the LabServer. 
+This setup is used to validate multiple OTG instances in parallel by running GoSNAPPI and Ondatra test cases.
+
+```sh
+docker-compose -f otg-stcv-labserver-compose.yaml up --scale otg=2 --scale stcv=4 -d
+```
+- The above command will create 2 otg services and 4 stcv ports and 1 labserver 
 
 #### Step 6: Stop the Services (Optional)
 
